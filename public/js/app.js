@@ -2,6 +2,7 @@
 import createNameList from "./createNameList.js";
 import createUl from "./createUl.js";
 import initList from "./initList.js";
+import editNameList from "./editNameList.js";
 
 window.addEventListener("DOMContentLoaded", () => {
 
@@ -14,9 +15,15 @@ window.addEventListener("DOMContentLoaded", () => {
 
     const ulElement = createUl();
 
+    const createEditableListItem = (name) => {
+        const liElement = createNameList(name);
+        editNameList(liElement, createEditableListItem);
+        return liElement;
+    };
+
     sectionListElement.append(ulElement);
 
-    initList(ulElement);
+    initList(ulElement, createEditableListItem);
 
     buttonListAddElement.addEventListener("click", (event) => {
         event.preventDefault();
@@ -31,7 +38,7 @@ window.addEventListener("DOMContentLoaded", () => {
         if (inputValue === "") {
             return;
         }
-        const liElement = createNameList(inputValue);
+        const liElement = createEditableListItem(inputValue);
         ulElement.prepend(liElement);
         inputElement.value = "";
     });
