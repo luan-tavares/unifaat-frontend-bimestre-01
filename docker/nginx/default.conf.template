@@ -1,15 +1,26 @@
 server {
     
-    listen 80;
+    listen 80; # Porta em que o NGINX vai escutar
 
-    root /var/www;
-    index index.html;
+    root /var/www/; # Diretório raiz dos arquivos estáticos, inseridos do coker compose
+    index index.html; # Arquivo padrão a ser carregado, nos arquivos estáticos
+
+    client_max_body_size 100M; # Tamanho máximo permitido do corpo da requisição
 
     location / {
-        autoindex on;
-        try_files $uri $uri/ =404;
+        autoindex on; # Mostra índice de arquivos se não encontrar o index
+        try_files $uri.html $uri $uri/ @node; # Procura o arquivo estático => procura o diretório estático => senao vai para o bloco @node
     }
 
-    error_page 404 /404.html;
+    location @node {
+
+        proxy_pass http://nodeweb_host:3000; # "Passa" para o container Node na porta 3000 pelo protocolo HTTP
+        proxy_http_version 1.1; # Usa versão 1.1 do HTTP para manter conexões persistentes
+        proxy_set_header Host $host; # Passa pra frente o host/nome do domínio
+        proxy_set_header X-Real-IP $remote_addr; # Passa pra frente o IP de origem
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; # Encadeia os IPs no cabeçalho para rastrear origem real
+        proxy_set_header X-Forwarded-Proto $scheme; # Passa pra frente se é HTTP ou HTTPS
+
+    }
 
 }
