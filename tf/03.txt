@@ -1,0 +1,75 @@
+--------------------------------------------------
+REPOSITÓRIO
+--------------------------------------------------
+https://github.com/luan-tavares/unifaat-frontend-bimestre-01
+
+--------------------------------------------------
+CONTEXTO
+--------------------------------------------------
+Na Aula 03 vimos Vite, forms e listeners, e o projeto passou a consumir
+a API de verdade com axios (fetch/XHR liberado a partir de agora). Hoje
+a lista de usuarios (frontend/public/js/render/listUserRender.js) busca
+sempre a primeira pagina via userListApi() e mostra todo mundo de uma
+vez, sem nenhum controle de pagina.
+
+O backend ja devolve tudo que voces precisam pra paginar: GET /users
+aceita os query params page e limit e responde no formato
+
+  { page, limit, total, next, data }
+
+(deem uma olhada em backend/app/Http/Controllers/UserApi/ListUserController.js
+pra entender cada campo). Alem disso, ja existe uma rota
+PUT /users/:id (UpdateUserController) que recebe { name, email } (e
+password, opcional) e atualiza o usuario no banco.
+
+--------------------------------------------------
+O QUE VOCES PRECISAM FAZER
+--------------------------------------------------
+1. Paginacao
+   Adicionar controles de pagina abaixo da lista (botoes "Anterior" e
+   "Proxima" sao suficientes, numero da pagina atual pode aparecer como
+   texto). Usar os campos page, next e total retornados pela API pra
+   habilitar/desabilitar os botoes corretamente (ex: sem next, "Proxima"
+   fica desabilitado; na pagina 1, "Anterior" fica desabilitado). Trocar
+   de pagina deve rebuscar a lista via userListApi({ page }), sem
+   recarregar a tela inteira.
+
+2. Editar nome e email
+   Cada item da lista precisa de um botao "Editar". Ao clicar, o nome e
+   o email exibidos viram inputs de texto preenchidos com os valores
+   atuais. Um botao "Salvar" confirma a edicao chamando a API de
+   verdade (PUT /users/:id) com o novo name e email, e so depois disso
+   a lista deve ser atualizada na tela.
+   Nao pode salvar com name ou email vazio.
+
+--------------------------------------------------
+REGRAS
+--------------------------------------------------
+- Pode usar fetch/axios normalmente (ja estamos usando no projeto desde
+  a Aula 03)
+- Seguir o mesmo padrao de arquivos ja usado no projeto: logica de API
+  em js/api, renderizacao em js/render, listeners em js/listeners, tudo
+  via import/export
+- Reaproveitar userListApi (js/api/userListApi.js) pra paginacao. Criar
+  uma nova função (ex: userUpdateApi) em um arquivo proprio pra chamar o
+  PUT /users/:id
+- Nao precisa ser bonito, o importante e funcionar: pode usar os
+  proprios botoes/inputs do Bootstrap ja usados no restante do projeto
+- Proibido: localStorage, qualquer framework/biblioteca alem do que ja
+  esta no projeto (axios, bootstrap)
+- Rodar o projeto com o mesmo Docker/Nginx ja usado nas aulas
+
+--------------------------------------------------
+COMO RODAR
+--------------------------------------------------
+1. cp .env.example .env
+2. docker compose up --build
+3. docker compose run --rm nodecommand-container migrate
+4. docker compose run --rm nodecommand-container seed
+5. Acessar http://localhost:8080
+
+--------------------------------------------------
+ENTREGA
+--------------------------------------------------
+- Link do repositorio com o codigo completo
+- Prazo de entrega: 04/09/2026t23:59:59

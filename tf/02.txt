@@ -1,0 +1,55 @@
+UNIFAAT - FRONTEND 2026.2
+TF 02
+
+Repositorio base (obrigatorio): https://github.com/luan-tavares/unifaat-frontend-bimestre-01
+
+--------------------------------------------------
+CONTEXTO
+--------------------------------------------------
+No TF01 voces implementaram adicionar e excluir itens da lista. Em aula
+vimos tambem querySelector/querySelectorAll e a diferenca entre
+event.target (elemento que efetivamente disparou o evento) e
+event.currentTarget (elemento onde o listener foi registrado).
+
+Agora a lista vai ganhar uma terceira acao: editar o nome de um item
+ja existente, sem precisar excluir e adicionar de novo.
+
+--------------------------------------------------
+O QUE VOCES PRECISAM FAZER
+--------------------------------------------------
+1. Entrar em modo de edicao
+   Criar um listener de click no proprio li. Ao clicar em cima do
+   texto de um item da lista, o nome exibido deve ser substituido por
+   um input de texto, ja preenchido com o valor atual. Ao lado desse
+   input deve aparecer um botao "Alterar".
+
+2. Confirmar a alteracao
+   Ao clicar no botao "Alterar", o item volta a aparecer como antes
+   (texto simples + botao "Excluir"), so que com o novo valor digitado
+   no input.
+
+3. Desafio: Enter tambem confirma
+   Alem de clicar no botao "Alterar", apertar Enter com o foco no
+   input tambem deve confirmar a alteracao, do mesmo jeito que o clique
+   no botao.
+
+--------------------------------------------------
+REGRAS
+--------------------------------------------------
+- So DOM puro: createElement, append, remove, setAttribute, classList,
+  addEventListener
+- Usar querySelector/querySelectorAll para localizar os elementos
+- A logica de alterar deve ficar em um arquivo .js separado, exportada
+  e importada via module (import/export), igual foi feito com
+  createNameList.js e createUl.js
+- Nao pode salvar um valor vazio (se o input estiver vazio, mantenha o
+  valor anterior ou nao permita confirmar)
+- Clicar nos botoes "Excluir" ou "Alterar" nao pode acionar o modo de
+  edicao do item (cuidado com target x currentTarget)
+- Proibido: fetch, localStorage, qualquer framework/biblioteca
+
+--------------------------------------------------
+ENTREGA
+--------------------------------------------------
+- Link do repositorio com o codigo completo
+- Prazo de entrega: [DEFINIR DATA]

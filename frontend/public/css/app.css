@@ -1,0 +1,17 @@
+/* Ajustes finos além do Bootstrap */
+
+.squirtle-img {
+    max-width: 120px;
+}
+
+#list-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+@media (max-width: 768px) {
+    body {
+        background-color: blueviolet !important;
+    }
+}

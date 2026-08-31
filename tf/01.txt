@@ -1,0 +1,52 @@
+UNIFAAT - FRONTEND 2026.2
+TRABALHO FINAL 01 - LISTA COM ADICIONAR E EXCLUIR
+
+Repositorio base (obrigatorio): https://github.com/luan-tavares/unifaat-frontend-bimestre-01
+
+--------------------------------------------------
+CONTEXTO
+--------------------------------------------------
+Em aula vimos como renderizar uma lista na tela a partir de um array,
+manipulando a arvore DOM (createElement, append, setAttribute) e usando
+colecoes de elementos (getElementsByClassName, getElementsByTagName, etc).
+
+O public/app.js do projeto da Aula 01 ja vem com a lista sendo
+renderizada na tela. Faltam duas partes, marcadas com // TODO no
+proprio arquivo, que ficam por sua conta.
+
+--------------------------------------------------
+O QUE VOCES PRECISAM FAZER
+--------------------------------------------------
+1. Botao "Adicionar"
+   Pegar o valor digitado no input, criar um novo li (com seu botao de
+   excluir) e inserir na lista (ul). Nao pode adicionar item vazio.
+   Depois de adicionar, limpar o input.
+
+2. Botao "Excluir"
+   Cada item da lista (inclusive os que ja vem prontos do array inicial)
+   precisa de um botao que remove aquele item especifico ao ser clicado,
+   sem afetar os outros.
+
+--------------------------------------------------
+REGRAS
+--------------------------------------------------
+- So DOM puro: createElement, append, remove, setAttribute, classList,
+  addEventListener
+- Pode (e deve) usar colecoes: getElementsByClassName,
+  getElementsByTagName, children, querySelectorAll
+- Proibido: fetch, localStorage, qualquer framework/biblioteca. Isso
+  ainda nao foi visto em aula
+- Rodar o projeto com o mesmo Docker/Nginx ja usado nas aulas
+
+--------------------------------------------------
+COMO RODAR
+--------------------------------------------------
+1. cp .env.example .env
+2. docker compose up --build
+3. Acessar http://localhost:8080
+
+--------------------------------------------------
+ENTREGA
+--------------------------------------------------
+- Link do repositorio com o codigo completo
+- Prazo de entrega: [DEFINIR DATA]

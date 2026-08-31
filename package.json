@@ -1,0 +1,29 @@
+{
+  "name": "unifaat-frontend-bimestre-01",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node _web.js",
+    "dev": "./node_modules/.bin/nodemon _web.js"
+  },
+  "type": "module",
+  "author": "Luan Tavares",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "axios": "^1.20.0",
+    "bcrypt": "^6.0.0",
+    "chalk": "^5.6.2",
+    "commander": "^15.0.0",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "express-fileupload": "^1.5.2",
+    "jsonwebtoken": "^9.0.3",
+    "pg": "^8.20.0",
+    "sequelize": "^6.37.8",
+    "swagger-ui-express": "^5.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14",
+    "vite": "^8.2.2"
+  }
+}
