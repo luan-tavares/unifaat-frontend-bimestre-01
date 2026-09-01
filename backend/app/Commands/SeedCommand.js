@@ -1,14 +1,19 @@
 import path from 'node:path'
-import { pathToFileURL } from 'node:url'
+import { fileURLToPath, pathToFileURL } from 'node:url'
 import postgres from '../../database/connections/postgres.js'
-import CONSTANTS from '../../bootstrap/config.js'
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 export default {
     name: 'seed',
     description: 'Popula o banco com dados de exemplo',
 
     async handle() {
-        const seedPath = path.resolve(CONSTANTS.DIR, 'backend', 'database', 'seeds', 'initialSeed.js')
+        // resolvido a partir do próprio arquivo (não de process.cwd()), pra
+        // funcionar tanto rodando `node command seed` na raiz do repo
+        // quanto `docker compose run nodecommand-container seed`, onde o
+        // cwd já é a pasta backend/
+        const seedPath = path.resolve(__dirname, '../../database/seeds/initialSeed.js')
         const seedModule = await import(pathToFileURL(seedPath).href)
 
         if (typeof seedModule.default !== 'function') {

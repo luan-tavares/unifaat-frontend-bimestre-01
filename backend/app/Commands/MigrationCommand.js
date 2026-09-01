@@ -1,9 +1,10 @@
 import fs from 'node:fs/promises'
 import path from 'node:path'
-import { pathToFileURL } from 'node:url'
+import { fileURLToPath, pathToFileURL } from 'node:url'
 import postgres from '../../database/connections/postgres.js'
 import { ensureMigrationsTable, getExecutedMigrations } from '../../utils/migrationUtils.js'
-import CONSTANTS from '../../bootstrap/config.js'
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 export default {
     name: 'migrate',
@@ -14,7 +15,11 @@ export default {
 
 
 
-        const migrationsPath = path.resolve(CONSTANTS.DIR, 'backend', 'database', 'migrations')
+        // resolvido a partir do próprio arquivo (não de process.cwd()), pra
+        // funcionar tanto rodando `node command migrate` na raiz do repo
+        // quanto `docker compose run nodecommand-container migrate`, onde o
+        // cwd já é a pasta backend/
+        const migrationsPath = path.resolve(__dirname, '../../database/migrations')
 
         await fs.mkdir(migrationsPath, { recursive: true })
 

@@ -1,7 +1,12 @@
 import userRender from "./userRender.js";
+import paginationRender from "./paginationRender.js";
 import { userListApi } from "../api/userListApi.js";
 
-export default async function listUserRender() {
+let currentPage = 1;
+
+export default async function listUserRender(page = currentPage) {
+
+    currentPage = page;
 
     const sectionListElement = document.querySelector("#list-container");
 
@@ -12,7 +17,7 @@ export default async function listUserRender() {
 
     sectionListElement.append(ulElement);
 
-    const { data: users } = await userListApi();
+    const { data: users, page: responsePage, next } = await userListApi({ page: currentPage });
 
     ulElement.innerHTML = "";
 
@@ -21,5 +26,7 @@ export default async function listUserRender() {
 
         ulElement.append(liElement);
     });
+
+    sectionListElement.append(paginationRender({ page: responsePage, next }));
 
 }
