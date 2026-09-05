@@ -8,7 +8,7 @@ export default {
     description: 'Popula o banco com dados de exemplo',
 
     async handle() {
-        const seedPath = path.resolve(CONSTANTS.DIR, 'backend', 'database', 'seeds', 'initialSeed.js')
+        const seedPath = path.resolve(CONSTANTS.DIR, 'database', 'seeds', 'initialSeed.js')
         const seedModule = await import(pathToFileURL(seedPath).href)
 
         if (typeof seedModule.default !== 'function') {

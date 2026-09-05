@@ -14,7 +14,7 @@ export default {
 
 
 
-        const migrationsPath = path.resolve(CONSTANTS.DIR, 'backend', 'database', 'migrations')
+        const migrationsPath = path.resolve(CONSTANTS.DIR, 'database', 'migrations')
 
         await fs.mkdir(migrationsPath, { recursive: true })
 

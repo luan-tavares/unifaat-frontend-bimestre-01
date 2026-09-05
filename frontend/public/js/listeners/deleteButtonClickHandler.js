@@ -4,7 +4,7 @@ import listUserRender from "../render/listUserRender.js";
 export default async function deleteButtonClickHandler(event) {
     event.preventDefault();
 
-    const liElement = event.currentTarget.parentElement;
+    const liElement = event.currentTarget.closest("li");
 
     const id = liElement.userId;
 
